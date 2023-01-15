@@ -7,6 +7,7 @@ import TrackVisibility from 'react-on-screen';
 import { Link } from "react-router-dom";
 import {Router, Route, useNavigate} from 'react-router-dom';
 import { Diagnosa } from "./Diagnosa";
+import { HashLink } from 'react-router-hash-link';
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
@@ -63,7 +64,9 @@ export const Banner = () => {
                 <h2>{``} <span className="txt-rotate" dataPeriod="100" data-rotate='[ "Selamat datang di" ]'><span className="wrap">{text}</span></span></h2>
                 <h1>DOKUMA</h1>
                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                  <button onClick={() => console.log('mulai')}>MULAI <ArrowRightCircle size={45} /></button>
+                  <HashLink to='diagnosa'>
+                    <button className="vvd">MULAI <ArrowRightCircle size={45} /></button>
+                  </HashLink>
               </div>}
             </TrackVisibility>
           </Col>

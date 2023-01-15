@@ -9,14 +9,21 @@ import { BrowserRouter as Router, Switch,
 
 export const Diagnosa = () => {
   const formInitialDetails = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    password: ''
+    jenisKelamin: '',
+    umur: '',
+    beratBadan: '',
+    tinggiBadan: '',
+    stresMetabolik: '',
+    merokok: '',
+    alkohol:'',
+    hamil: '',
+    pekerjaan: '',
+    diagnosis: '',
+    alergi: '',
+    pengobatanSaatIni: ''
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Diagnosa');
+  const [buttonText, setButtonText] = useState('Tata Laksana');
   const [status, setStatus] = useState({});
 
   const onFormUpdate = (category, value) => {
@@ -47,10 +54,10 @@ export const Diagnosa = () => {
   };
 
   return (
-    <section className="contact" id="diagnosa">
-      <Container>
+    <section className="diagnosa" id="diagnosa">
+      <Container className="cont">
         <Row className="align-items-center"> 
-        <Col size={12} md={6}>
+        <Col size={12}>
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
@@ -58,16 +65,103 @@ export const Diagnosa = () => {
                 <form onSubmit={handleSubmit}>
                   <Row>
                     <Row size={12} sm={6} className="px-1">
-                      <input type="text" value={formDetails.firstName} placeholder="Username" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Jenis Kelamin</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.jenisKelamin} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('jenisKelamin', e.target.value)} />
+                      </Col>
                     </Row>
-                    <Row size={12} className="px-1">
-                      <input type="password" value={formDetails.password} placeholder="Password" onChange={(e) => onFormUpdate('password', e.target.value)}/>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Umur</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="number" value={formDetails.umur} placeholder="Umur" onChange={(e) => onFormUpdate('umur', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Tinggi Badan</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="number" value={formDetails.tinggiBadan} placeholder="Tinggi Badan (dalam cm)" onChange={(e) => onFormUpdate('tinggiBadan', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Berat Badan</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="number" value={formDetails.beratBadan} placeholder="Berat Badan (dalam kg)" onChange={(e) => onFormUpdate('beratBadan', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Stres Metabolik</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.stresMetabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stresMetabolik', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Hamil</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('hamil', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Merokok</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('merokok', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Alkohol</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('alkohol', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Pekerjaan</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.pekerjaan} placeholder="Pekerjaan" onChange={(e) => onFormUpdate('pekerjaan', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Pengobatan Saat Ini</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.pengobatanSaatIni} placeholder="Pengobatan saat ini" onChange={(e) => onFormUpdate('pengobatanSaatIni', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Alergi</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.alergi} placeholder="Alergi" onChange={(e) => onFormUpdate('alergi', e.target.value)} />
+                      </Col>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Col size={12} sm={6} className="px-1">
+                        <p>Diagnosis</p>
+                      </Col>
+                      <Col size={12} sm={6} className="px-1">
+                        <input type="text" value={formDetails.diagnosis} placeholder="Diagnosis" onChange={(e) => onFormUpdate('diagnosis', e.target.value)} />
+                      </Col>
                     </Row>
                     < Row>
                       <button type="submit"><span>{buttonText}</span></button>
-                    </Row>
-                    < Row>
-                    <p>Belum punya akun? <a href="#register">Yuk daftar dulu</a></p>
                     </Row>
                     {
                       status.message &&
@@ -80,13 +174,7 @@ export const Diagnosa = () => {
               </div>}
             </TrackVisibility>
           </Col>
-          <Col size={12} md={6}>
-            <TrackVisibility>
-              {({ isVisible }) =>
-                <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
-              }
-            </TrackVisibility>
-          </Col>
+
         </Row>
       </Container>
     </section>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import contactImg from "../assets/img/contact-img2.svg";
+import loginImg from "../assets/img/contact-img2.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
@@ -44,7 +44,7 @@ export const Login = () => {
   };
 
   return (
-    <section className="contact" id="login">
+    <section className="login" id="login">
       <Container>
         <Row className="align-items-center"> 
         <Col size={12} md={6}>
@@ -64,7 +64,7 @@ export const Login = () => {
                       <button type="submit"><span>{buttonText}</span></button>
                     </Row>
                     < Row>
-                    <p>Belum punya akun? <a href="#register">Yuk daftar dulu</a></p>
+                    <p>Belum punya akun? <a href="/register">Yuk daftar dulu</a></p>
                     </Row>
                     {
                       status.message &&
@@ -80,7 +80,7 @@ export const Login = () => {
           <Col size={12} md={6}>
             <TrackVisibility>
               {({ isVisible }) =>
-                <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
+                <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={loginImg} alt="Login"/>
               }
             </TrackVisibility>
           </Col>

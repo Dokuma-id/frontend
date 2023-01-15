@@ -44,19 +44,17 @@ export const NavBar = () => {
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="#home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
-              <Nav.Link href="#skills" className={activeLink === 'skills' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('skills')}>Layanan Kami</Nav.Link>
-              <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>About</Nav.Link>
+              <Nav.Link href="/home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
+              <Nav.Link href="/home#layanan" className={activeLink === 'layanan' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('layanan')}>Layanan Kami</Nav.Link>
+              <Nav.Link href="/home#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>About</Nav.Link>
             </Nav>
             <span className="navbar-text">
               <div className="social-icon">
-                <a href="#"><img src={navIcon1} alt="" /></a>
-                <a href="#"><img src={navIcon2} alt="" /></a>
-                <a href="#"><img src={navIcon3} alt="" /></a>
+                <a href="/"><img src={navIcon1} alt="" /></a>
+                <a href="/"><img src={navIcon2} alt="" /></a>
+                <a href="/"><img src={navIcon3} alt="" /></a>
               </div>
-              <HashLink to='#login'>
-                <button className="vvd"><span>Login</span></button>
-              </HashLink>
+                <button className="vvd"><a href="/login">Login</a></button>
             </span>
           </Navbar.Collapse>
         </Container>
