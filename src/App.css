@@ -833,7 +833,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	font-weight: 700;
   margin-bottom: 30px;
 }
-.diagnosa form input, .diagnosa form textarea {
+.diagnosa form input, .diagnosa form textarea, .diagnosa form select {
   width: 100%;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -846,12 +846,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.8px;
   transition: 0.3s ease-in-out;
 }
-.diagnosa form input:focus, .diagnosa form textarea:focus {
+.diagnosa form input:focus, .diagnosa form textarea:focus, .diagnosa form select:focus {
   background: rgba(255, 255, 255, 1);
   color: #121212;
 }
 .diagnosa form input::placeholder, .diagnosa form textarea::placeholder {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #fff;
 }

@@ -1,18 +1,25 @@
 import { useState } from "react";
+import { useHistory  } from "react-router-dom";
+import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import loginImg from "../assets/img/contact-img2.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import swal from 'sweetalert';
+
+
+
 
 export const Login = () => {
+  const history = useHistory()
   const formInitialDetails = {
-    firstName: '',
-    lastName: '',
     email: '',
-    phone: '',
     password: ''
   }
+  const baseUrl = 'http://20.231.66.68'
   const [formDetails, setFormDetails] = useState(formInitialDetails);
+  const [login, setLogin] = useState(true)
+  const isLogin = () => setLogin(!login)
   const [buttonText, setButtonText] = useState('Login');
   const [status, setStatus] = useState({});
 
@@ -24,23 +31,19 @@ export const Login = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code == 200) {
-      setStatus({ succes: true, message: 'Message sent successfully'});
-    } else {
-      setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
+    e.preventDefault();
+    try{
+      const res = await axios.post(`${baseUrl}/login`, formDetails)
+      localStorage.setItem("token", res.data.token)
+      setFormDetails(formInitialDetails)
+      history.push("/home")
+      console.log(res)
     }
+    catch(err){
+      console.log(err)
+    }
+    
   };
 
   return (
@@ -55,7 +58,7 @@ export const Login = () => {
                 <form onSubmit={handleSubmit}>
                   <Row>
                     <Row size={12} sm={6} className="px-1">
-                      <input type="text" value={formDetails.firstName} placeholder="Username" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
+                      <input type="text" value={formDetails.email} placeholder="Email" onChange={(e) => onFormUpdate('email', e.target.value)} />
                     </Row>
                     <Row size={12} className="px-1">
                       <input type="password" value={formDetails.password} placeholder="Password" onChange={(e) => onFormUpdate('password', e.target.value)}/>

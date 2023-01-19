@@ -12,7 +12,9 @@ export const Register = () => {
     phone: '',
     password: '',
     no: '',
-    lokasiPraktik: ''
+    lokasiPraktik: '',
+    lokasiPraktik1: '',
+    lokasiPraktik2: ''
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState('Register');
@@ -75,12 +77,35 @@ export const Register = () => {
                     <Col size={12} sm={6} className="px-1">
                       <input type="tel" value={formDetails.phone} placeholder="Phone No." onChange={(e) => onFormUpdate('phone', e.target.value)}/>
                     </Col>
-                    <Col size={12} sm={6} className="px-1">
-                      <input type="number" value={formDetails.no} placeholder="No STR" onChange={(e) => onFormUpdate('no', e.target.value)} />
+                    <Col size={12} sm={12} className="px-1">
+                      <input type="text" value={formDetails.lokasiPraktik} placeholder="Lokasi Praktik (Prov)" onChange={(e) => onFormUpdate('lokasiPraktik', e.target.value)}/>
                     </Col>
-                    <Col size={12} sm={6} className="px-1">
-                      <input type="text" value={formDetails.lokasiPraktik} placeholder="Lokasi Praktik" onChange={(e) => onFormUpdate('lokasi', e.target.value)}/>
+                    <Col size={12} sm={12} className="px-1">
+                        <input type="text" value={formDetails.lokasiPraktik1} placeholder="Lokasi Praktik (Kota)" onChange={(e) => onFormUpdate('lokasiPraktik1', e.target.value)}/>
                     </Col>
+                    <Col size={12} sm={12} className="px-1">
+                        <input type="text" value={formDetails.lokasiPraktik2} placeholder="Lokasi Praktik (RS)" onChange={(e) => onFormUpdate('lokasiPraktik2', e.target.value)}/>
+                    </Col>
+                    <Col size={12} sm={12} className="px-1">
+                        <input type="number" value={formDetails.no} placeholder="No STR" onChange={(e) => onFormUpdate('no', e.target.value)} />
+                    </Col>
+                    <Row>
+                    
+                    </Row>
+                    <Row>
+                      
+                    </Row>
+                    <Row>
+                      
+                    </Row>
+                    <Row>
+                      
+                    </Row>
+                    <Row></Row>
+                    
+                    
+                    
+                    
                     <Col size={12} className="px-1">
                     <input type="password" value={formDetails.password} placeholder="Password" onChange={(e) => onFormUpdate('password', e.target.value)}/>
                       <button type="submit"><span>{buttonText}</span></button>

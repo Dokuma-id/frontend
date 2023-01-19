@@ -69,7 +69,11 @@ export const Diagnosa = () => {
                         <p>Jenis Kelamin</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.jenisKelamin} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('jenisKelamin', e.target.value)} />
+                      <select id="favColor" class="jenisKelamin" value={formDetails.jenisKelamin} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('jenisKelamin', e.target.value)}>
+                        <option value="">Jenis Kelamin</option>
+                        <option value="True">Pria</option>
+                        <option value="False">Wanita</option>
+                      </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -101,7 +105,13 @@ export const Diagnosa = () => {
                         <p>Stres Metabolik</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.stresMetabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stresMetabolik', e.target.value)} />
+                        <select id="favColor" value={formDetails.stresMetabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stresMetabolik', e.target.value)} >
+                          <option value="">Stres Metabolik</option>
+                          <option value="0">Tidak ada</option>
+                          <option value="1">Trauma ringan</option>
+                          <option value="2">Operasi ringan, trauma sedang</option>
+                          <option value="3">Sepsis, operasi besar, trauma berat</option>
+                        </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -109,7 +119,11 @@ export const Diagnosa = () => {
                         <p>Hamil</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('hamil', e.target.value)} />
+                        <select id="favColor"  value={formDetails.hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('hamil', e.target.value)}>
+                          <option value="">Hamil?</option>
+                          <option value="True">Ya</option>
+                          <option value="False">Tidak</option>
+                      </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -117,7 +131,11 @@ export const Diagnosa = () => {
                         <p>Merokok</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('merokok', e.target.value)} />
+                        <select id="favColor"  value={formDetails.merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('merokok', e.target.value)}>
+                          <option value="">Merokok atau Sering Terpapar Rokok?</option>
+                          <option value="True">Ya</option>
+                          <option value="False">Tidak</option>
+                        </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -125,7 +143,11 @@ export const Diagnosa = () => {
                         <p>Alkohol</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('alkohol', e.target.value)} />
+                        <select id="favColor"  value={formDetails.alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('alkohol', e.target.value)}>
+                          <option value="">Alkohol?</option>
+                          <option value="True">Ya</option>
+                          <option value="False">Tidak</option>
+                        </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -133,7 +155,15 @@ export const Diagnosa = () => {
                         <p>Pekerjaan</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.pekerjaan} placeholder="Pekerjaan" onChange={(e) => onFormUpdate('pekerjaan', e.target.value)} />
+                      <select id="favColor"  value={formDetails.pekerjaan} placeholder="Pekerjaan" onChange={(e) => onFormUpdate('pekerjaan', e.target.value)}>
+                        <option value="">Tingkat Aktivitas</option>
+                        <option value="1">Istirahat (tirah baring)</option>
+                        <option value="2">Aktivitas ringan (IRT, pegawai kantor, guru)</option>
+                        <option value="3">Aktivitas sedang (pegawai industri ringan, mahasiswa, militer yang sedang
+                            tidak perang)</option>
+                        <option value="4">Aktivitas berat (petani, buruh, atlet, militer dalam keadaan latihan)</option>
+                        <option value="5">Aktivitas sangat berat (tukang becak, tukang gali)</option>
+                        </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -149,7 +179,48 @@ export const Diagnosa = () => {
                         <p>Alergi</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.alergi} placeholder="Alergi" onChange={(e) => onFormUpdate('alergi', e.target.value)} />
+                        <select id="favColor" value={formDetails.alergi} placeholder="Alergi" onChange={(e) => onFormUpdate('alergi', e.target.value)} >
+                          <option value="">Alergi</option>
+                          <option value="">Tidak Ada</option>
+                          <option value="Paracetamol">Paracetamol</option>
+                          <option value="Ibuprofen">Ibuprofen</option>
+                          <option value="Kacang">Kacang</option>
+                          <option value="Aspirin">Aspirin</option>
+                          <option value="Penisilin">Penisilin, Penicillin</option>
+                          <option value="Susu sapi">Susu sapi</option>
+                          <option value="Telur">Telur</option>
+                          <option value="Kerang">Kerang</option>
+                          <option value="Gandum">Gandum</option>
+                          <option value="Kecoak">Kecoak</option>
+                          <option value="Pewarna">Pewarna</option>
+                          <option value="Logam">Logam</option>
+                          <option value="Parfum">Parfum</option>
+                          <option value="Karet">Karet</option>
+                          <option value="Lateks">Lateks</option>
+                          <option value="Sengatan lebah">Sengatan lebah</option>
+                          <option value="Spora jamur">Spora jamur</option>
+                          <option value="Tungau debu rumah">Tungau debu rumah, house dust mite</option>
+                          <option value="Pollen">Serbuk sari, Pollen</option>
+                          <option value="Ikan">Ikan</option>
+                          <option value="Kedelai">Kedelai</option>
+                          <option value="Sefalosporin">Sefalosporin/Cephalosporin</option>
+                          <option value="NSAID">Nonsteroid Antiinflammatory Drugs, NSAID, Obat anti inflamasi nonsteroid
+                              OAINS</option>
+                          <option value="Lidokain">Lidocaine, Lidokain</option>
+                          <option value="Antikejang">Antikejang, Antiseizure</option>
+                          <option value="Metformin">Metformin</option>
+                          <option value="Glibenklamid">Glibenklamid, Glibenclamide</option>
+                          <option value="Glimepiride">Glimepiride</option>
+                          <option value="Glipizid">Glipizid</option>
+                          <option value="Rifampisin">Rifampisin, Rifampicin</option>
+                          <option value="Isoniazid">Isoniazid</option>
+                          <option value="Pirazinamid">Pirazinamid</option>
+                          <option value="Etambutol">Etambutol, Ethambutol</option>
+                          <option value="Hidroklorotiazid">Hidroklorotiazid, Hydrochlorothiazide</option>
+                          <option value="Kaptopril">Kaptopril, Captopril </option>
+                          <option value="Amlodipine">Amlodipine</option>
+                          <option value="Atenolol">Atenolol</option>
+                        </select>
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -157,7 +228,20 @@ export const Diagnosa = () => {
                         <p>Diagnosis</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.diagnosis} placeholder="Diagnosis" onChange={(e) => onFormUpdate('diagnosis', e.target.value)} />
+                        <select id="favColor" value={formDetails.diagnosis} placeholder="Diagnosis" onChange={(e) => onFormUpdate('diagnosis', e.target.value)} >
+                          <option value="TB">Tuberkulosis paru tanpa komplikasi</option>
+                          <option value="HP">Hipertensi esensial</option>
+                          <option value="DM">Diabetes melitus tipe 2</option>
+                          <option value="Anemia">Anemia</option>
+                          <option value="Influenza">Influenza</option>
+                          <option value="Faringitis">Faringitis</option>
+                          <option value="Pneumonia">Pneumonia</option>
+                          <option value="DDR">Diare dehidrasi ringan</option>
+                          <option value="DTR">Diare tanpa dehidrasi</option>
+                          <option value="HeadacheAkut">Headache Akut</option>
+                          <option value="HeadacheKronik">Headache Kronik</option>
+                          <option value="Migrain">Migrain</option>
+                        </select>
                       </Col>
                     </Row>
                     < Row>
