@@ -19,9 +19,27 @@ export const Login = () => {
   const baseUrl = 'http://20.231.66.68'
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [login, setLogin] = useState(true)
+  const [isError, setIsError] = useState(false)
+  const [error, setError] = useState("error: ")
   const isLogin = () => setLogin(!login)
   const [buttonText, setButtonText] = useState('Login');
   const [status, setStatus] = useState({});
+
+
+  const UserErrorMessage = (props) => {
+    return <p style={{ color: "red"}}>{error}</p>;
+  }
+  const GuestErrorMessage = (props) => {
+    return <h1></h1>;
+  }
+  
+  const ErrorMessage = (props) =>  {
+    const isError2 = props.isError2;
+    if (isError2) {
+      return <UserErrorMessage />;
+    }
+    return <GuestErrorMessage />;
+  }
 
   const onFormUpdate = (category, value) => {
       setFormDetails({
@@ -41,7 +59,9 @@ export const Login = () => {
       console.log(res)
     }
     catch(err){
-      console.log(err)
+      setIsError(true)
+      setError(err.response.data.Message)
+      setButtonText("Login")
     }
     
   };
@@ -62,6 +82,9 @@ export const Login = () => {
                     </Row>
                     <Row size={12} className="px-1">
                       <input type="password" value={formDetails.password} placeholder="Password" onChange={(e) => onFormUpdate('password', e.target.value)}/>
+                    </Row>
+                    <Row size={12} className="px-1">
+                      <ErrorMessage isError2= {isError} />
                     </Row>
                     < Row>
                       <button type="submit"><span>{buttonText}</span></button>
