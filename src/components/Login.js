@@ -62,6 +62,10 @@ export const Login = () => {
       setIsError(true)
       setError(err.response.data.Message)
       setButtonText("Login")
+      setTimeout(() => {
+        setIsError(false)
+        setError('')
+      }, 2000)
     }
     
   };
