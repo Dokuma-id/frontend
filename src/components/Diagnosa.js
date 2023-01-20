@@ -1,4 +1,6 @@
 import React from "react";
+import { useHistory  } from "react-router-dom";
+import axios from "axios";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img2.svg";
@@ -8,19 +10,22 @@ import { BrowserRouter as Router, Switch,
     Route, Redirect,} from "react-router-dom";
 
 export const Diagnosa = () => {
+  const baseUrl = 'http://20.231.66.68'
+  const token = localStorage.getItem('token');
+  const history = useHistory()
   const formInitialDetails = {
-    jenisKelamin: '',
+    bb:'',
+    tb: '',
     umur: '',
-    beratBadan: '',
-    tinggiBadan: '',
-    stresMetabolik: '',
-    merokok: '',
-    alkohol:'',
-    hamil: '',
+    is_cowo: '',
+    is_hamil: '',
+    is_merokok: '',
+    is_alkohol: '',
     pekerjaan: '',
-    diagnosis: '',
+    stres_metabolik: '',
+    pengobatan: '',
     alergi: '',
-    pengobatanSaatIni: ''
+    diagnosis: ''
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState('Tata Laksana');
@@ -34,22 +39,23 @@ export const Diagnosa = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     setButtonText("Sending...");
-    let response = await fetch("http://localhost:3000/diagnosa", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code == 200) {
-      setStatus({ succes: true, message: 'Message sent successfully'});
-    } else {
+    e.preventDefault();
+    try{
+      const res = await axios.post(`${baseUrl}/tata_laksana`, formDetails, {
+        headers: {
+          "x-access-token": token
+        }
+      })
+      //localStorage.setItem("token", res.data.token)
+      setFormDetails(formInitialDetails)
+      history.push("/tata-laksana")
+      console.log(res)
+      console.log(token)
+    }
+    catch(err){
       setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
+      setButtonText("Tata Laksana")
     }
   };
 
@@ -69,7 +75,7 @@ export const Diagnosa = () => {
                         <p>Jenis Kelamin</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                      <select id="favColor" class="jenisKelamin" value={formDetails.jenisKelamin} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('jenisKelamin', e.target.value)}>
+                      <select id="favColor" class="jenisKelamin" value={formDetails.is_cowo} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('is_cowo', e.target.value)}>
                         <option value="">Jenis Kelamin</option>
                         <option value="True">Pria</option>
                         <option value="False">Wanita</option>
@@ -89,7 +95,7 @@ export const Diagnosa = () => {
                         <p>Tinggi Badan</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="number" value={formDetails.tinggiBadan} placeholder="Tinggi Badan (dalam cm)" onChange={(e) => onFormUpdate('tinggiBadan', e.target.value)} />
+                        <input type="number" value={formDetails.tb} placeholder="Tinggi Badan (dalam cm)" onChange={(e) => onFormUpdate('tb', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -97,7 +103,7 @@ export const Diagnosa = () => {
                         <p>Berat Badan</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="number" value={formDetails.beratBadan} placeholder="Berat Badan (dalam kg)" onChange={(e) => onFormUpdate('beratBadan', e.target.value)} />
+                        <input type="number" value={formDetails.bb} placeholder="Berat Badan (dalam kg)" onChange={(e) => onFormUpdate('bb', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -105,7 +111,7 @@ export const Diagnosa = () => {
                         <p>Stres Metabolik</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor" value={formDetails.stresMetabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stresMetabolik', e.target.value)} >
+                        <select id="favColor" value={formDetails.stres_metabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stres_metabolik', e.target.value)} >
                           <option value="">Stres Metabolik</option>
                           <option value="0">Tidak ada</option>
                           <option value="1">Trauma ringan</option>
@@ -119,7 +125,7 @@ export const Diagnosa = () => {
                         <p>Hamil</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor"  value={formDetails.hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('hamil', e.target.value)}>
+                        <select id="favColor"  value={formDetails.is_hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('is_hamil', e.target.value)}>
                           <option value="">Hamil?</option>
                           <option value="True">Ya</option>
                           <option value="False">Tidak</option>
@@ -131,7 +137,7 @@ export const Diagnosa = () => {
                         <p>Merokok</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor"  value={formDetails.merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('merokok', e.target.value)}>
+                        <select id="favColor"  value={formDetails.is_merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('is_merokok', e.target.value)}>
                           <option value="">Merokok atau Sering Terpapar Rokok?</option>
                           <option value="True">Ya</option>
                           <option value="False">Tidak</option>
@@ -143,7 +149,7 @@ export const Diagnosa = () => {
                         <p>Alkohol</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor"  value={formDetails.alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('alkohol', e.target.value)}>
+                        <select id="favColor"  value={formDetails.is_alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('is_alkohol', e.target.value)}>
                           <option value="">Alkohol?</option>
                           <option value="True">Ya</option>
                           <option value="False">Tidak</option>
@@ -171,7 +177,7 @@ export const Diagnosa = () => {
                         <p>Pengobatan Saat Ini</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.pengobatanSaatIni} placeholder="Pengobatan saat ini" onChange={(e) => onFormUpdate('pengobatanSaatIni', e.target.value)} />
+                        <input type="text" value={formDetails.pengobatan} placeholder="Pengobatan saat ini" onChange={(e) => onFormUpdate('pengobatan', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">

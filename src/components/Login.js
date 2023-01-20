@@ -18,10 +18,10 @@ export const Login = () => {
   }
   const baseUrl = 'http://20.231.66.68'
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [login, setLogin] = useState(true)
+  const [login, setLogin] = useState(false)
   const [isError, setIsError] = useState(false)
   const [error, setError] = useState("error: ")
-  const isLogin = () => setLogin(!login)
+  const isLogin = () => setLogin(login)
   const [buttonText, setButtonText] = useState('Login');
   const [status, setStatus] = useState({});
 
@@ -55,6 +55,7 @@ export const Login = () => {
       const res = await axios.post(`${baseUrl}/login`, formDetails)
       localStorage.setItem("token", res.data.token)
       setFormDetails(formInitialDetails)
+      setLogin(true)
       history.push("/home")
       console.log(res)
     }

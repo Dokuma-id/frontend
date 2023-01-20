@@ -13,6 +13,7 @@ export const NavBar = () => {
 
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const onScroll = () => {

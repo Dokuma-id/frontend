@@ -18,6 +18,7 @@ import { TataLaksana } from "./views/TataLaksana"
  */
 
 function App() {
+  const token = localStorage.getItem('token');
   return (
     <div className="App">
       <NavBar />

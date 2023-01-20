@@ -10,6 +10,7 @@ import { Diagnosa } from "./Diagnosa";
 import { HashLink } from 'react-router-hash-link';
 
 export const Banner = () => {
+  const token = localStorage.getItem('token');
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');
