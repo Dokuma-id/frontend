@@ -2,11 +2,64 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import { NavBar } from "../components/NavBar";
+import { useHistory } from "react-router-dom";
+import { AlignStart } from "react-bootstrap-icons";
 
 export const TataLaksana = () => {
+  const history = useHistory();
+  const data = history.location.state.data;
+  const edukasi = history.location.state.edukasi;
+  const farmakologi = history.location.state.farmakologi;
+  const nonFarmakologi = history.location.state.nonFarmakologi;
+  const referensi = history.location.state.referensi;
+  const namaPenyakit = history.location.state.namaPenyakit;
+  console.log("nih hasil")
+  //console.log(data) - gaperlu?
+  console.log(edukasi)
+  console.log(farmakologi)
+  console.log(nonFarmakologi)
+  // console.log(referensi) - done
+  //console.log(namaPenyakit) - done
+
+  //numpang taro sini, iterate object
+  /**
+   * {Object.keys(farmakologi).map((key, index) => {
+                        return (
+                          <div key={index}>
+                            <h2>
+                              {key}: {Object.keys(farmakologi[key]).map((key, index) => {
+                                return (
+                                  <div key={index}>
+                                    <h2>
+                                      {key}: {(farmakologi[key])[key]}
+                                    </h2>
+
+                                    <hr />
+                                  </div>
+                                );
+                              })}
+                            </h2>
+
+                            <hr />
+                          </div>
+                        );
+                      })}
+   */
+
+
+  const listPenyakit = namaPenyakit.map((ref) =>
+    <p>{ref}</p>
+  );
+  const listReferensi = referensi.map((ref) =>
+    <li>{ref}</li>
+  );
+  console.log(listReferensi)
 
   return (
-    <section className="tataLaksana" id="tataLaksana">
+    <div className="App">
+      <NavBar/>
+      <section className="tataLaksana" id="tataLaksana">
       <Container>
         <Row>
           <Col size={12}>
@@ -14,59 +67,47 @@ export const TataLaksana = () => {
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn": ""}>
                 <h2>Tata Laksana</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <ul>
+                  {listPenyakit}
+                </ul>
                 <Tab.Container id="projects-tabs" defaultActiveKey="first">
                   <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                     <Nav.Item>
-                      <Nav.Link eventKey="first">FAQ</Nav.Link>
+                      <Nav.Link eventKey="first">Edukasi</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="second">Tab 2</Nav.Link>
+                      <Nav.Link eventKey="second">Farmakologi</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="third">Tab 3</Nav.Link>
+                      <Nav.Link eventKey="third">Non Farmakologi</Nav.Link>
                     </Nav.Item>
                   </Nav>
                   <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""}>
                     <Tab.Pane eventKey="first">
-                      <Row>
-                        <p><strong>Apakah penyakitnya akan lengkap?</strong></p>
-                        <p >Target awal kami 20 penyakit tersering di FKTP (puskesmas/klinik), lalu bertahap menambahkan penyakit-penyakit kompetensi 4 untuk dokter umum, baru penyakit-penyakit lainnya.</p>
-                        
-                      </Row>
-                      <Row>
-                      <p><strong>Apakah bisa terintegrasi dengan rekam medis online yang sudah ada di FKTP (puskesmas/klinik)?</strong></p>
-                      <p>
-                        Saat ini belum karena mengintegrasi dengan pihak lain membutuhkan waktu dan proses yang lebih lama. Saat ini Dokter perlu mengisi secara manual data yang dibutuhkan.
-                      </p>
-                      </Row>
-                      <Row>
-                      <p><strong>Mengapa data hamil, pengobatan saat ini, dan alergi harus diisi?</strong></p>
-                      <p>
-                        Dokuma mengutamakan tata laksana komprehensif yang personalized/terindividualisasi. Data tersebut akan berpengaruh terhadap rekomendasi tata laksana yang akan dimunculkan.
-                      </p>
-                      </Row>
-                      <Row>
-                      <p><strong>Apakah data pasien dapat disimpan? </strong></p>
-                      <p>
-                        Saat ini belum karena kami akan menghadapi isu etik terkait kerahasiaan data pasien. Namun kami akan berusaha mencarikan solusinya supaya pasien dengan penyakit kronis dapat dimasukkan datanya, sehingga follow up menjadi lebih mudah.
-                      </p>
-                      </Row>
-                      <Row>
-                      <p><strong>Apakah obat-obatan yang dituliskan sudah lengkap? </strong></p>
-                      <p>
-                        Kami hanya memasukkan obat-obatan yang tersedia di FKTP (puskesmas/klinik) berdasarkan Formularium Nasional Kementerian Kesehatan RI tahun 2019. 
-                      </p>
-                      </Row>
+                      
+                      <div id="isian" className="isian">
+                        {edukasi.map((items, index) => {
+                            return <li key={"li-" + index}> {items} </li>;
+                          })}
+                      </div>
+                      
                     </Tab.Pane>
                     <Tab.Pane eventKey="second">
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quam, quod neque provident velit, rem explicabo excepturi id illo molestiae blanditiis, eligendi dicta officiis asperiores delectus quasi inventore debitis quo.</p>
+                    
+                      <p></p>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                      <p>Lorem ipsum dolor sit amet coeque provident velit, rem explicabo excepturi id illo molestiae blanditiis, eligendi dicta officiis asperiores delectus quasi inventore debitis quo.</p>
+                      <div id="isian" className="isian">
+                        {nonFarmakologi.map((items, index) => {
+                            return <li key={"li-" + index}> {items} </li>;
+                          })}
+                      </div>
+                      <p></p>
                     </Tab.Pane>
                   </Tab.Content>
                 </Tab.Container>
+                <p >Referensi:</p>
+                <ul>{listReferensi}</ul>
               </div>}
             </TrackVisibility>
           </Col>
@@ -74,5 +115,7 @@ export const TataLaksana = () => {
       </Container>
       <img className="background-image-right" src={colorSharp2}></img>
     </section>
+    </div>
+    
   )
 }

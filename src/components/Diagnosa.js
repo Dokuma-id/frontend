@@ -1,32 +1,34 @@
 import React from "react";
-import { useHistory  } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img2.svg";
 import 'animate.css';
+import { NavBar } from "./NavBar";
 import TrackVisibility from 'react-on-screen';
 import { BrowserRouter as Router, Switch, 
     Route, Redirect,} from "react-router-dom";
+import { useHistory  } from "react-router-dom";
+import axios from "axios";
 
 export const Diagnosa = () => {
   const baseUrl = 'http://20.231.66.68'
   const token = localStorage.getItem('token');
   const history = useHistory()
   const formInitialDetails = {
-    bb:'',
-    tb: '',
-    umur: '',
-    is_cowo: '',
-    is_hamil: '',
-    is_merokok: '',
-    is_alkohol: '',
+    bb:0,
+    tb: 0,
+    umur: 0,
+    is_cowo: false,
+    is_hamil: false,
+    is_merokok: false,
+    is_alkohol: false,
     pekerjaan: '',
     stres_metabolik: '',
     pengobatan: '',
-    alergi: '',
-    diagnosis: ''
+    alergi: [],
+    diagnosis: ['TB']
   }
+
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState('Tata Laksana');
   const [status, setStatus] = useState({});
@@ -40,18 +42,32 @@ export const Diagnosa = () => {
 
   const handleSubmit = async (e) => {
     setButtonText("Sending...");
+    console.log(token)
+    console.log(formDetails)
     e.preventDefault();
     try{
       const res = await axios.post(`${baseUrl}/tata_laksana`, formDetails, {
         headers: {
-          "x-access-token": token
+          "x-access-token": token,
+          "Access-Control-Allow-Origin" : '*'
         }
       })
       //localStorage.setItem("token", res.data.token)
       setFormDetails(formInitialDetails)
-      history.push("/tata-laksana")
-      console.log(res)
-      console.log(token)
+      const hasil = {
+        data:res.data.data,
+        edukasi:res.data.edukasi,
+        farmakologi: res.data.farmakologi,
+        namaPenyakit: res.data.nama_penyakit,
+        nonFarmakologi: res.data.non_farmakologi,
+        referensi: res.data.referensi
+      }
+      //history.push(pathname: "/tata_laksana", state: hasil)
+      history.push({ 
+        pathname: '/tata_laksana',
+        state: hasil
+       });
+      console.log(hasil)
     }
     catch(err){
       setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
@@ -60,7 +76,9 @@ export const Diagnosa = () => {
   };
 
   return (
-    <section className="diagnosa" id="diagnosa">
+    <div className="App">
+      <NavBar/>
+      <section className="diagnosa" id="diagnosa">
       <Container className="cont">
         <Row className="align-items-center"> 
         <Col size={12}>
@@ -186,7 +204,7 @@ export const Diagnosa = () => {
                       </Col>
                       <Col size={12} sm={6} className="px-1">
                         <select id="favColor" value={formDetails.alergi} placeholder="Alergi" onChange={(e) => onFormUpdate('alergi', e.target.value)} >
-                          <option value="">Alergi</option>
+                          
                           <option value="">Tidak Ada</option>
                           <option value="Paracetamol">Paracetamol</option>
                           <option value="Ibuprofen">Ibuprofen</option>
@@ -268,5 +286,8 @@ export const Diagnosa = () => {
         </Row>
       </Container>
     </section>
+
+    </div>
+    
   )
 }

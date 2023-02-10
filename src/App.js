@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useContext} from 'react';
+import { AuthProvider } from './context/auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavBar } from "./components/NavBar";
 import { Banner } from "./components/Banner";
@@ -8,17 +10,18 @@ import { Projects } from "./components/Projects";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { Footer } from "./components/Footer";
-import { BrowserRouter as Router, Switch, Routes, Route, Redirect,} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Diagnosa } from "./components/Diagnosa";
-import { Home } from "./views/Home"
-import { TataLaksana } from "./views/TataLaksana"
+import { Home } from "./views/Home";
+import { TataLaksana } from "./views/TataLaksana";
+import Routes  from "./routes/Routes";
+
 /**
  * home = "/home"
  * diagnosa = "/diagnosa"
  */
 
-function App() {
-  const token = localStorage.getItem('token');
+/**function App() {
   return (
     <div className="App">
       <NavBar />
@@ -31,6 +34,16 @@ function App() {
       <Footer />
     </div>
   );
+}**/
+
+const App = () => {
+  return(
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes/>
+      </AuthProvider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

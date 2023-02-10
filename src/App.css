@@ -525,6 +525,34 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   text-align: center;
   width: 56%;
 }
+
+.tataLaksana p .referensi{
+  color: #3B3B5E;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  margin: 14px auto 30px auto;
+  text-align: left;
+  width: 56%;
+}
+
+.tataLaksana div .isian{
+  color: #3B3B5E;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 70px;
+}
+
+.tataLaksana div .isian li{
+  list-style-type: circle;
+  line-height: 2;
+}
+
+
+
+
+
+
 .tataLaksana .nav.nav-pills {
   width: 72%;
   margin: 0 auto;
@@ -726,7 +754,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Login Css ************/
 .login {
   background: linear-gradient(90.21deg, #DFC0D1 -5.91%, #703757 111.58%);
-  padding: 60px 0 200px 0;
+  padding: 120px 0 200px 0;
 }
 
 .login a {
@@ -736,6 +764,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .login .container {
   padding-top: 100px;
   padding-bottom: 50px;
+}
+
+.login .text{
+  font-size: 25px;
+	font-weight: 100;
+  margin-top: 50px;
+  
 }
 
 .login img {
@@ -755,7 +790,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin: 0 0 8px 0;
   padding: 18px 26px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 25px;
   letter-spacing: 0.8px;
   transition: 0.3s ease-in-out;
 }
@@ -764,7 +799,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #121212;
 }
 .login form input::placeholder, .login form textarea::placeholder {
-  font-size: 16px;
+  font-size: 23px;
   font-weight: 400;
   color: #fff;
 }
@@ -826,6 +861,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 .diagnosa .container{
   padding-top: 80px;
+}
+
+.diagnosa p {
+  font-size: 20px;
+	font-weight: 100;
+  
 }
 
 .diagnosa h2 {

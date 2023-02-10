@@ -6,11 +6,13 @@ import projImg3 from "../assets/img/project-img3.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import { NavBar } from "./NavBar";
 
 export const Projects = () => {
-
   return (
-    <section className="project" id="projects">
+    <div className="App">
+      <NavBar/>
+      <section className="project" id="projects">
       <Container>
         <Row>
           <Col size={12}>
@@ -25,10 +27,10 @@ export const Projects = () => {
                       <Nav.Link eventKey="first">FAQ</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="second">Tab 2</Nav.Link>
+                      <Nav.Link eventKey="second">Tes</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="third">Tab 3</Nav.Link>
+                      <Nav.Link eventKey="third">Tes</Nav.Link>
                     </Nav.Item>
                   </Nav>
                   <Tab.Content id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""}>
@@ -78,5 +80,7 @@ export const Projects = () => {
       </Container>
       <img className="background-image-right" src={colorSharp2}></img>
     </section>
+    </div>
+    
   )
 }

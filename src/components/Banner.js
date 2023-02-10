@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/auth";
 import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/img/header-img.svg";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
@@ -10,7 +11,7 @@ import { Diagnosa } from "./Diagnosa";
 import { HashLink } from 'react-router-hash-link';
 
 export const Banner = () => {
-  const token = localStorage.getItem('token');
+  const {logout, isAuth} = useContext(AuthContext)
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');
@@ -65,9 +66,24 @@ export const Banner = () => {
                 <h2>{``} <span className="txt-rotate" dataPeriod="100" data-rotate='[ "Selamat datang di" ]'><span className="wrap">{text}</span></span></h2>
                 <h1>DOKUMA</h1>
                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                  <HashLink to='diagnosa'>
-                    <button className="vvd">MULAI <ArrowRightCircle size={45} /></button>
-                  </HashLink>
+                  {isAuth? (
+                    <>
+                    <div>
+                      <HashLink to='diagnosa'>
+                        <button className="vvd">MULAI <ArrowRightCircle size={45} /></button>
+                      </HashLink>
+                    </div>
+                    </>
+                ):(
+                    <>
+                    <div>
+                    <HashLink to='login'>
+                        <button className="vvd">MULAI <ArrowRightCircle size={45} /></button>
+                      </HashLink>
+                    </div>
+                    </>
+                )}
+                  
               </div>}
             </TrackVisibility>
           </Col>

@@ -1,45 +1,20 @@
 import { useState } from "react";
-import { useHistory  } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios"
 import { Container, Row, Col } from "react-bootstrap";
 import loginImg from "../assets/img/contact-img2.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
-import swal from 'sweetalert';
-
-
-
 
 export const Login = () => {
-  const history = useHistory()
   const formInitialDetails = {
     email: '',
     password: ''
   }
-  const baseUrl = 'http://20.231.66.68'
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [login, setLogin] = useState(false)
-  const [isError, setIsError] = useState(false)
-  const [error, setError] = useState("error: ")
-  const isLogin = () => setLogin(login)
+  const [login, setLogin] = useState(true)
+  const isLogin = () => setLogin(!login)
   const [buttonText, setButtonText] = useState('Login');
   const [status, setStatus] = useState({});
-
-
-  const UserErrorMessage = (props) => {
-    return <p style={{ color: "red"}}>{error}</p>;
-  }
-  const GuestErrorMessage = (props) => {
-    return <h1></h1>;
-  }
-  
-  const ErrorMessage = (props) =>  {
-    const isError2 = props.isError2;
-    if (isError2) {
-      return <UserErrorMessage />;
-    }
-    return <GuestErrorMessage />;
-  }
 
   const onFormUpdate = (category, value) => {
       setFormDetails({
@@ -49,26 +24,23 @@ export const Login = () => {
   }
 
   const handleSubmit = async (e) => {
-    setButtonText("Sending...");
     e.preventDefault();
-    try{
-      const res = await axios.post(`${baseUrl}/login`, formDetails)
-      localStorage.setItem("token", res.data.token)
-      setFormDetails(formInitialDetails)
-      setLogin(true)
-      history.push("/home")
-      console.log(res)
+    setButtonText("Sending...");
+    let response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify(formDetails),
+    });
+    setButtonText("Send");
+    let result = await response.json();
+    setFormDetails(formInitialDetails);
+    if (result.code == 200) {
+      setStatus({ succes: true, message: 'Message sent successfully'});
+    } else {
+      setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
     }
-    catch(err){
-      setIsError(true)
-      setError(err.response.data.Message)
-      setButtonText("Login")
-      setTimeout(() => {
-        setIsError(false)
-        setError('')
-      }, 2000)
-    }
-    
   };
 
   return (
@@ -83,13 +55,10 @@ export const Login = () => {
                 <form onSubmit={handleSubmit}>
                   <Row>
                     <Row size={12} sm={6} className="px-1">
-                      <input type="text" value={formDetails.email} placeholder="Email" onChange={(e) => onFormUpdate('email', e.target.value)} />
+                      <input type="text" value={formDetails.firstName} placeholder="Email" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
                     </Row>
                     <Row size={12} className="px-1">
                       <input type="password" value={formDetails.password} placeholder="Password" onChange={(e) => onFormUpdate('password', e.target.value)}/>
-                    </Row>
-                    <Row size={12} className="px-1">
-                      <ErrorMessage isError2= {isError} />
                     </Row>
                     < Row>
                       <button type="submit"><span>{buttonText}</span></button>

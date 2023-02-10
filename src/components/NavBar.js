@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../context/auth";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo from '../assets/img/logo.svg';
 import navIcon1 from '../assets/img/nav-icon1.svg';
@@ -8,12 +9,12 @@ import { HashLink } from 'react-router-hash-link';
 import {
   BrowserRouter as Router
 } from "react-router-dom";
+import Button from "./Button";
 
 export const NavBar = () => {
-
+  const {logout, isAuth} = useContext(AuthContext)
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const onScroll = () => {
@@ -45,9 +46,9 @@ export const NavBar = () => {
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
-              <Nav.Link href="/home#layanan" className={activeLink === 'layanan' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('layanan')}>Layanan Kami</Nav.Link>
-              <Nav.Link href="/home#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>About</Nav.Link>
+              <Nav.Link href="/" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
+              <Nav.Link href="/#layanan" className={activeLink === 'layanan' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('layanan')}>Layanan Kami</Nav.Link>
+              <Nav.Link href="/#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>About</Nav.Link>
             </Nav>
             <span className="navbar-text">
               <div className="social-icon">
@@ -55,7 +56,20 @@ export const NavBar = () => {
                 <a href="/"><img src={navIcon2} alt="" /></a>
                 <a href="/"><img src={navIcon3} alt="" /></a>
               </div>
-                <button className="vvd"><a href="/login">Login</a></button>
+              {isAuth? (
+                    <>
+                    <div>
+                      <button className="vvd" ><a href="/">Logout</a></button>
+                    </div>
+                    </>
+                ):(
+                    <>
+                    <div>
+                      <button className="vvd"><a href="/login">Login</a></button>
+                    </div>
+                    </>
+                )}
+                
             </span>
           </Navbar.Collapse>
         </Container>
