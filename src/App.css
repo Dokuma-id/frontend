@@ -541,12 +541,18 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-size: 20px;
   font-weight: 400;
   padding: 70px;
+  text-indent: 70px;
 }
 
 .tataLaksana div .isian li{
   list-style-type: circle;
   line-height: 2;
 }
+
+.tataLaksana div .isian img{
+  padding: 60px;
+}
+
 
 
 

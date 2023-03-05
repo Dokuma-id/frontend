@@ -11,7 +11,7 @@ import { useHistory  } from "react-router-dom";
 import axios from "axios";
 
 export const Diagnosa = () => {
-  const baseUrl = 'http://20.231.66.68'
+  const baseUrl = 'http://20.169.198.254'
   const token = localStorage.getItem('token');
   const history = useHistory()
   const formInitialDetails = {

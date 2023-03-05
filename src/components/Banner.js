@@ -5,6 +5,7 @@ import headerImg from "../assets/img/header-img.svg";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import { NavLink } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import {Router, Route, useNavigate} from 'react-router-dom';
 import { Diagnosa } from "./Diagnosa";
@@ -69,17 +70,17 @@ export const Banner = () => {
                   {isAuth? (
                     <>
                     <div>
-                      <HashLink to='diagnosa'>
-                        <button className="vvd">MULAI <ArrowRightCircle size={45} /></button>
-                      </HashLink>
+                    <NavLink to="/diagnosa">
+                        <button className="vvd"> MULAI <ArrowRightCircle size={45} /></button>
+                      </NavLink>
                     </div>
                     </>
                 ):(
                     <>
                     <div>
-                    <HashLink to='login'>
-                        <button className="vvd">MULAI <ArrowRightCircle size={45} /></button>
-                      </HashLink>
+                      <NavLink to="/login">
+                        <button className="vvd"> MULAI <ArrowRightCircle size={45} /></button>
+                      </NavLink>
                     </div>
                     </>
                 )}
