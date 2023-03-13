@@ -15,23 +15,24 @@ export const Diagnosa = () => {
   const token = localStorage.getItem('token');
   const history = useHistory()
   const formInitialDetails = {
-    bb:0,
-    tb: 0,
-    umur: 0,
-    is_cowo: false,
+    bb:70,
+    tb: 160,
+    umur: 40,
+    is_cowo: true,
     is_hamil: false,
     is_merokok: false,
-    is_alkohol: false,
-    pekerjaan: '',
-    stres_metabolik: '',
-    pengobatan: '',
+    is_alkohol: true,
+    pekerjaan: 2,
+    stres_metabolik: 3,
+    pengobatan: 'tidak ada',
     alergi: [],
-    diagnosis: ['TB']
+    diagnosis: ['TB','DM']
   }
 
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState('Tata Laksana');
   const [status, setStatus] = useState({});
+  const [isMale, setIsMale] = useState(false)
 
   const onFormUpdate = (category, value) => {
       setFormDetails({
@@ -93,11 +94,11 @@ export const Diagnosa = () => {
                         <p>Jenis Kelamin</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                      <select id="favColor" class="jenisKelamin" value={formDetails.is_cowo} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('is_cowo', e.target.value)}>
-                        <option value="">Jenis Kelamin</option>
-                        <option value="True">Pria</option>
+                      <select id="favColor" defaultValue="True" class="jenisKelamin" value={formDetails.is_cowo} placeholder="Jenis Kelamin" onChange={(e) => onFormUpdate('is_cowo', e.target.value)}>
+                        <option value="True" >Pria</option>
                         <option value="False">Wanita</option>
                       </select>
+                      
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -105,7 +106,7 @@ export const Diagnosa = () => {
                         <p>Umur</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="number" value={formDetails.umur} placeholder="Umur" onChange={(e) => onFormUpdate('umur', e.target.value)} />
+                        <input type="number" defaultValue="70" value={formDetails.umur} placeholder="Umur" onChange={(e) => onFormUpdate('umur', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -113,7 +114,7 @@ export const Diagnosa = () => {
                         <p>Tinggi Badan</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="number" value={formDetails.tb} placeholder="Tinggi Badan (dalam cm)" onChange={(e) => onFormUpdate('tb', e.target.value)} />
+                        <input type="number" defaultValue="160" value={formDetails.tb} placeholder="Tinggi Badan (dalam cm)" onChange={(e) => onFormUpdate('tb', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -121,7 +122,7 @@ export const Diagnosa = () => {
                         <p>Berat Badan</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="number" value={formDetails.bb} placeholder="Berat Badan (dalam kg)" onChange={(e) => onFormUpdate('bb', e.target.value)} />
+                        <input type="number" defaultValue="40" value={formDetails.bb} placeholder="Berat Badan (dalam kg)" onChange={(e) => onFormUpdate('bb', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -129,9 +130,8 @@ export const Diagnosa = () => {
                         <p>Stres Metabolik</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor" value={formDetails.stres_metabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stres_metabolik', e.target.value)} >
-                          <option value="">Stres Metabolik</option>
-                          <option value="0">Tidak ada</option>
+                        <select id="favColor" defaultValue="0" value={formDetails.stres_metabolik} placeholder="Stres Metabolik (dalam kg)" onChange={(e) => onFormUpdate('stres_metabolik', e.target.value)} >
+                          <option value="0" >Tidak ada</option>
                           <option value="1">Trauma ringan</option>
                           <option value="2">Operasi ringan, trauma sedang</option>
                           <option value="3">Sepsis, operasi besar, trauma berat</option>
@@ -143,11 +143,12 @@ export const Diagnosa = () => {
                         <p>Hamil</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor"  value={formDetails.is_hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('is_hamil', e.target.value)}>
-                          <option value="">Hamil?</option>
-                          <option value="True">Ya</option>
+                        <select id="favColor" defaultValue="False"  value={formDetails.is_hamil} placeholder="Hamil?" onChange={(e) => onFormUpdate('is_hamil', e.target.value)} >
                           <option value="False">Tidak</option>
+                          <option value="True">Ya</option>
+                          
                       </select>
+                      
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -155,10 +156,10 @@ export const Diagnosa = () => {
                         <p>Merokok</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor"  value={formDetails.is_merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('is_merokok', e.target.value)}>
-                          <option value="">Merokok atau Sering Terpapar Rokok?</option>
+                        <select id="favColor" defaultValue="False"  value={formDetails.is_merokok} placeholder="Merokok?" onChange={(e) => onFormUpdate('is_merokok', e.target.value)} >
+                        <option value="False">Tidak</option>
                           <option value="True">Ya</option>
-                          <option value="False">Tidak</option>
+                          
                         </select>
                       </Col>
                     </Row>
@@ -167,10 +168,10 @@ export const Diagnosa = () => {
                         <p>Alkohol</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor"  value={formDetails.is_alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('is_alkohol', e.target.value)}>
-                          <option value="">Alkohol?</option>
-                          <option value="True">Ya</option>
+                        <select id="favColor" defaultValue="False" value={formDetails.is_alkohol} placeholder="Alkohol" onChange={(e) => onFormUpdate('is_alkohol', e.target.value)}>
                           <option value="False">Tidak</option>
+                          <option value="True">Ya</option>
+                          
                         </select>
                       </Col>
                     </Row>
@@ -179,10 +180,9 @@ export const Diagnosa = () => {
                         <p>Pekerjaan</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                      <select id="favColor"  value={formDetails.pekerjaan} placeholder="Pekerjaan" onChange={(e) => onFormUpdate('pekerjaan', e.target.value)}>
-                        <option value="">Tingkat Aktivitas</option>
+                      <select id="favColor" defaultValue="2" value={formDetails.pekerjaan} placeholder="Pekerjaan" onChange={(e) => onFormUpdate('pekerjaan', e.target.value)}>
                         <option value="1">Istirahat (tirah baring)</option>
-                        <option value="2">Aktivitas ringan (IRT, pegawai kantor, guru)</option>
+                        <option value="2" >Aktivitas ringan (IRT, pegawai kantor, guru)</option>
                         <option value="3">Aktivitas sedang (pegawai industri ringan, mahasiswa, militer yang sedang
                             tidak perang)</option>
                         <option value="4">Aktivitas berat (petani, buruh, atlet, militer dalam keadaan latihan)</option>
@@ -195,7 +195,7 @@ export const Diagnosa = () => {
                         <p>Pengobatan Saat Ini</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <input type="text" value={formDetails.pengobatan} placeholder="Pengobatan saat ini" onChange={(e) => onFormUpdate('pengobatan', e.target.value)} />
+                        <input type="text" defaultValue="" value={formDetails.pengobatan} placeholder="Pengobatan saat ini" onChange={(e) => onFormUpdate('pengobatan', e.target.value)} />
                       </Col>
                     </Row>
                     <Row size={12} sm={6} className="px-1">
@@ -203,9 +203,9 @@ export const Diagnosa = () => {
                         <p>Alergi</p>
                       </Col>
                       <Col size={12} sm={6} className="px-1">
-                        <select id="favColor" value={formDetails.alergi} placeholder="Alergi" onChange={(e) => onFormUpdate('alergi', e.target.value)} >
+                        <select id="favColor" defaultValue="" value={formDetails.alergi} placeholder="Alergi" onChange={(e) => onFormUpdate('alergi', e.target.value)} >
                           
-                          <option value="">Tidak Ada</option>
+                          <option value="" >Tidak Ada</option>
                           <option value="Paracetamol">Paracetamol</option>
                           <option value="Ibuprofen">Ibuprofen</option>
                           <option value="Kacang">Kacang</option>

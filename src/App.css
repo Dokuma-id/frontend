@@ -553,7 +553,18 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding: 60px;
 }
 
+.tataLaksana div .obat{
+  color: #3B3B5E;
+  font-size: 20px;
+  font-weight: 400;
+  padding: 70px;
+  text-indent: 70px;
+}
 
+.tataLaksana div .obat li{
+  list-style-type: none;
+  line-height: 2;
+}
 
 
 
@@ -863,6 +874,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .diagnosa img {
   width: 92%;
+}
+
+.diagnosa .select--disabled {
+  cursor: not-allowed;
+  background-color: #eee;
+  background-image: linear-gradient(to top, #ddd, #eee 33%);
 }
 
 .diagnosa .container{
