@@ -26,7 +26,7 @@ export const Diagnosa = () => {
     stres_metabolik: 3,
     pengobatan: 'tidak ada',
     alergi: [],
-    diagnosis: ['TB','DM']
+    diagnosis: ['TB']
   }
 
   const [formDetails, setFormDetails] = useState(formInitialDetails);
