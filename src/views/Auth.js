@@ -6,7 +6,7 @@ import axios from "axios";
 import Input from "../components/Input";
 import Home from "./Home";
 import { NavBar } from "../components/NavBar";
-const baseUrl = "http://20.169.198.254"
+const baseUrl = "http://20.169.198.254/"
 
 const Auth = () => {
     const {isAuth, loginSuccess, loginFailed} = useContext(AuthContext)
