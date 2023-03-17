@@ -11,7 +11,7 @@ import { useHistory  } from "react-router-dom";
 import axios from "axios";
 
 export const Diagnosa = () => {
-  const baseUrl = 'http://20.169.198.254/'
+  const baseUrl = 'http://20.169.198.254'
   const token = localStorage.getItem('token');
   const history = useHistory()
   const formInitialDetails = {
@@ -47,7 +47,7 @@ export const Diagnosa = () => {
     console.log(formDetails)
     e.preventDefault();
     try{
-      const res = await axios.post(`${baseUrl}/tata_laksana`, formDetails, {
+      const res = await axios.post(`${baseUrl}/tata_laksana/`, formDetails, {
         headers: {
           "x-access-token": token,
           "Access-Control-Allow-Origin" : '*'

@@ -48,7 +48,7 @@ const Auth = () => {
             }
             console.log(user)
             try{
-                const res = await axios.post(`${baseUrl}/login`, user)
+                const res = await axios.post(`${baseUrl}login/`, user)
                 localStorage.setItem("token", res.data.token)
                 setEmail("")
                 setPassword("")
@@ -73,7 +73,7 @@ const Auth = () => {
                 first_name, last_name, password, email, phone_number, lokasi_praktik, nomor_str
             }
             try{
-                const res = await axios.post(`${baseUrl}/sign_up`, user)
+                const res = await axios.post(`${baseUrl}sign_up/`, user)
                 localStorage.setItem("token", res.data.token)
                 setEmail("")
                 setPassword("")
