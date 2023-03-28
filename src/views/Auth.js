@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
-import { AuthContext, AuthProvider } from "../context/auth";
-import { Redirect, Route} from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { AuthContext } from "../context/auth";
+import {Container } from "react-bootstrap";
 import axios from "axios";
 import Input from "../components/Input";
 import Home from "./Home";
@@ -14,14 +13,12 @@ const Auth = () => {
     const [email, setEmail] = useState("")
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState("error: ")
-    const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [first_name, setFirstName] = useState("")
     const [last_name, setLastName] = useState("")
     const [phone_number, setPhone] = useState("")
     const [lokasi_praktik, setLokasi] = useState("")
     const [buttonText, setButtonText] = useState('Login');
-    const [buttonText2, setButtonText2] = useState('Register');
     const [nomor_str, setStr] = useState("")
     const isLogin = () => {
         setLogin(!login)

@@ -6,13 +6,9 @@ import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import { NavLink } from 'react-router-dom'
-import { Link } from "react-router-dom";
-import {Router, Route, useNavigate} from 'react-router-dom';
-import { Diagnosa } from "./Diagnosa";
-import { HashLink } from 'react-router-hash-link';
 
 export const Banner = () => {
-  const {logout, isAuth} = useContext(AuthContext)
+  const {isAuth} = useContext(AuthContext)
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');

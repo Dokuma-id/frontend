@@ -11,8 +11,6 @@ export const Login = () => {
     password: ''
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [login, setLogin] = useState(true)
-  const isLogin = () => setLogin(!login)
   const [buttonText, setButtonText] = useState('Login');
   const [status, setStatus] = useState({});
 

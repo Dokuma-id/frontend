@@ -4,23 +4,15 @@ import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import { NavBar } from "../components/NavBar";
 import { useHistory } from "react-router-dom";
-import { AlignStart, ConeStriped } from "react-bootstrap-icons";
 
 export const TataLaksana = () => {
   const history = useHistory();
-  const data = history.location.state.data;
   const edukasi = history.location.state.edukasi;
   const farmakologi = history.location.state.farmakologi;
   const nonFarmakologi = history.location.state.nonFarmakologi;
   const referensi = history.location.state.referensi;
   const namaPenyakit = history.location.state.namaPenyakit;
-  console.log("nih hasil");
-  console.log(data)
-  //console.log(edukasi);
-  //console.log(farmakologi); - done
-  console.log(nonFarmakologi);
-  // console.log(referensi) - done
-  //console.log(namaPenyakit) - done
+
   let edu1 = "";
   let edu2 = "";
   let edu2Gambar = "";
@@ -29,47 +21,31 @@ export const TataLaksana = () => {
   let edu4 = "";
   let edu4Anak = [];
 
-  function keysOf(obj) {  
-    return Reflect.ownKeys(obj)
-  }
 
-  //for (let step = 1; step <= edukasi.size(); step++) {
   for (let step = 0; step < 4; step++) {
-    if (step == 0) {
-      //console.log("Satu")
+    if (step === 0) {
       edu1 = edukasi[step];
-      //console.log(edu1)
     }
-    else if (step == 1) {
-      //console.log("Dua")
+    else if (step === 1) {
       edu2 = edukasi[1][0];
       edu2Gambar = edukasi[1][1];
-      //console.log(edu2)
-      //console.log(edu2Gambar)
     }
-    else if (step == 2) {
-      //console.log("Tiga")
+    else if (step === 2) {
       edu3 = edukasi[2][0];
       edu3Anak = edukasi[2][1];
-      //console.log(edu3)
-      //console.log(edu3Anak)
     }
-    else if (step == 3) {
-      //console.log("Empat")
+    else if (step === 3) {
       edu4 = edukasi[3][0];
       edu4Anak = edukasi[3][1];
-      //console.log(edu4)
-      //console.log(edu4Anak)
     }
   }
-  const keys = keysOf(farmakologi);
-  //console.log(keys)
-  var pen1 = new Array();
-  var pen2 = new Array();
-  var pen3 = new Array();
+
+  let pen1 = [];
+  let pen2 = [];
+  let pen3 = [];
 
   Object.entries(farmakologi).forEach(([key, value], index) => {
-    if(index == 0){
+    if(index === 0){
       //console.log(`${index}: ${key} = ${value}`);
       let namaP = `${key}`
       pen1.push(`${key}`);
@@ -81,7 +57,7 @@ export const TataLaksana = () => {
       pen1.push(`${value2}`)
     })
     }
-    else if (index == 1){
+    else if (index === 1){
       let namaP = `${key}`
       pen2.push(`${key}`);
       //console.log(farmakologi[namaP])
@@ -109,43 +85,39 @@ export const TataLaksana = () => {
   //console.log(pen1)
   //console.log(pen2)
   //console.log(pen3)
-  let listNon = new Array();
+  let listNon = [];
   for (let step = 0; step < nonFarmakologi.length; step++) {
-    if(step == 0 ){
+    if(step === 0 ){
       listNon.push(nonFarmakologi[0])
     }
-    else if (step == 1){
+    else if (step === 1){
       listNon.push(nonFarmakologi[1])
     }
-    else if (step == 2){
+    else if (step === 2){
       listNon.push(nonFarmakologi[2])
     }
-    else if (step == 3){
-      if(nonFarmakologi[3] == true){
+    else if (step === 3){
+      if(nonFarmakologi[3]){
         listNon.push ("benerrr")
       }
-      else{
-      }
     }
-    else if (step == 4){
+    else if (step === 4){
       listNon.push(nonFarmakologi[4])
     }
-    else if (step == 5){
-      if(nonFarmakologi[3] == true){
+    else if (step === 5){
+      if(nonFarmakologi[3]){
         listNon.push ("bener")
       }
-      else{
-      }
     }
-    else if (step == 6){
+    else if (step === 6){
       listNon.push(nonFarmakologi[6][0])
       for (let i = 0; i <= nonFarmakologi[6].length; i++){
         listNon.push(nonFarmakologi[6][1][i])
       }
     }
-    else if (step == 7){
-      for (let i = 0; i <nonFarmakologi[7].length; i++){
-        listNon.push(nonFarmakologi[7][i])
+    else if (step === 7){
+      for (const element of nonFarmakologi[7]){
+        listNon.push(element)
       }
     }
   }
@@ -194,7 +166,7 @@ export const TataLaksana = () => {
                         </ul>
                         <ul>
                         <strong>{edu2}</strong> <br></br>
-                          <img src={edu2Gambar}></img>
+                          <img src={edu2Gambar} alt="gambar edukasi 2"></img>
                         </ul>
                         <ul>
                         <strong>{edu3}</strong>
@@ -262,7 +234,7 @@ export const TataLaksana = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2}></img>
+        <img className="background-image-right" alt="gambar background" src={colorSharp2}></img>
     </section>
     </div>
     

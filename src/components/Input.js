@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 const Input = ({placeholder, type, value, change}) => {
     return (

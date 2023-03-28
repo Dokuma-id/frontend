@@ -1,12 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import contactImg from "../assets/img/contact-img2.svg";
 import 'animate.css';
 import { NavBar } from "./NavBar";
 import TrackVisibility from 'react-on-screen';
-import { BrowserRouter as Router, Switch, 
-    Route, Redirect,} from "react-router-dom";
 import { useHistory  } from "react-router-dom";
 import axios from "axios";
 
@@ -32,7 +28,6 @@ export const Diagnosa = () => {
   const [formDetails, setFormDetails] = useState(formInitialDetails);
   const [buttonText, setButtonText] = useState('Tata Laksana');
   const [status, setStatus] = useState({});
-  const [isMale, setIsMale] = useState(false)
 
   const onFormUpdate = (category, value) => {
       setFormDetails({
@@ -67,7 +62,7 @@ export const Diagnosa = () => {
       history.push({ 
         pathname: '/tata_laksana',
         state: hasil
-       });
+      });
       console.log(hasil)
     }
     catch(err){
